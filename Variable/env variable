@@ -1,0 +1,5 @@
+Set-Item -Path Env:\TF_VAR_instance_type -Value "t2.micro"  # on viual code
+
+export TF_VAR_instance_type="t2.micro"
+
+terraform plan -var='ec2_config={(v_size=50, v_type="gp2")}'
