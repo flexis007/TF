@@ -1,1 +1,10 @@
 Terraform's dependency management is a crucial feature that ensures resources are created, updated, and destroyed in the correct order
+
+Lifecycle means
+
+The lifecycle of a Terraform resource refers to the stages a resource goes through from its creation to 
+its eventual destruction. In simpler words, it's like the journey of a resource from being born to being 
+decommissioned.
+
+For example, you might want to create a new virtual machine before destroying an old one to avoid downtime. 
+Terraform's lifecycle management features allow you to define such behaviors.
