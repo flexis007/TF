@@ -1,0 +1,9 @@
+terraform workspace new <workspace_name>: Creates a new workspace with the given name.
+
+terraform workspace select <workspace_name>: Switches to the specified workspace.
+
+terraform workspace list: Lists all available workspaces.
+
+terraform workspace show: Displays the currently selected workspace.
+
+terraform workspace delete <workspace_name>: Deletes the specified workspace.
