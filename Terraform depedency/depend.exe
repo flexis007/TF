@@ -8,3 +8,12 @@ decommissioned.
 
 For example, you might want to create a new virtual machine before destroying an old one to avoid downtime. 
 Terraform's lifecycle management features allow you to define such behaviors.
+
+Terraform state command:-
+
+terraform lis ---- list all resources
+terraform state show <resouce address> ---- Show details of specific resources
+terraform state rm <resource address> --- Remove a resource from terraform
+terraform state mv <source> <destination>---- Move a resource to a different address
+terraform state pull
+terraform state push
