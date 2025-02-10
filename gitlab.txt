@@ -1,0 +1,167 @@
+>> What is Git Lab:
+
+A web-based DevOps lifecycle tool(Building,Testing,Deploy).
+
+Provide Feature Like
+--CI/CD pipeline features
+--Collaboration on code and project management.
+--Monitoring and Security tool
+
+>> GitLab Runner:-
+
+GitLab Runner is an open-source application that works with GitLab CI/CD to run jobs in a pipeline. 
+It's the agent that executes the CI/CD jobs defined in your .gitlab-ci.yml file
+
+>> Create account in gitlab,
+
+gitlab.com ---- sign with github account
+
+>> Run your First Job
+
+Project Name (Test) --- new file--- file name is(.gitlab-ci.yml)
+
+#Build
+
+build:
+    script:
+        - echo "First Step"
+        - echo "Second Step"
+
+Commit changes
+
+>> Run Multiple Jobs
+
+on same file
+
+stages:
+    - build
+    - test
+    - deploy
+
+
+#Build
+
+build-job:
+    stage: build
+    script:
+        - echo "First Step"
+        - echo "Second Step"
+
+test-job:
+    stage: test
+    script:
+        - echo "Test Step"
+        
+deploy-job:
+    stage: deploy
+    script:
+        - echo "Deploy Step"
+
+Commit
+
+>> Run a script
+
+create a file (basic.sh)
+
+#!/bin/bash
+
+echo "this is bash scrip"
+touch abc
+echo "this is my file" > abc
+
+now commit,
+
+open .gitlab-ci.yml file
+
+bash_execute:
+  script:
+    - mkdir folder
+    - cp ./basic.sh folder/
+    - cd folder
+    - bash ./basic.sh
+
+  artifacts:
+    paths: 
+     - "./folder"
+    when: on_success
+    access: all
+    expire_in: 30 days
+
+>> Enviorment Variables
+
+First Set the variable
+
+setting---ci/cd---variable---add variable (NAME and PASS)
+
+bash_execute:
+  script:
+    - echo " My name is $NAME"
+    - echo "My pass is $PASS"
+
+>> Email Notification
+
+aitomatic send the email notification, failed or pass with commit id
+
+>> Scheduled job using cron
+
+build---pipeline cheduling---create new pipeline--- set your cron tine and date
+
+>> Manual Deployment
+
+stages:
+  - build
+  - test
+  - deploy
+
+build_job:
+  stage: build
+  script:
+    - echo "build job"
+
+test_job:
+  stage: test
+  script:
+    - echo "test job"
+
+deploy_job:
+  stage: deploy
+  when: manual
+  script:
+    - echo "deploy job"
+
+>> Pre defined Variables
+stages:
+  - build
+  - test
+  - deploy
+
+build_job:
+  stage: build
+  script:
+    - echo $CI_COMMIT_AUTHOR #PREDEFINE VARIABLE
+
+>> Working with GIT
+on gitlab--- new project---import---github---authorized with password---all git hub repo showing, just import
+
+>> Local Git repo
+on git lab --- create new blank project---
+
+git add .
+git commit
+git remote add
+git  branch -M main
+git push -uf origin main # set the access token and enable access to push the repo
+
+image: alpine:latest
+pages:
+ script:
+    - mkdir public
+    - cp index.html public
+    
+ artifacts:
+    paths:
+    - "./public"
+ only:
+     - main
+
+
